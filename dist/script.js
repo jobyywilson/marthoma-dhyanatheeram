@@ -10,15 +10,24 @@ menuButton.addEventListener('click', () => {
   const isOpen = menuButton.getAttribute('aria-expanded') === 'true';
   menuButton.setAttribute('aria-expanded', String(!isOpen));
   nav.classList.toggle('open', !isOpen);
-  document.body.style.overflow = isOpen ? '' : 'hidden';
+  document.body.classList.toggle('menu-open', !isOpen);
 });
 
 nav.querySelectorAll('a').forEach((link) => {
   link.addEventListener('click', () => {
     menuButton.setAttribute('aria-expanded', 'false');
     nav.classList.remove('open');
-    document.body.style.overflow = '';
+    document.body.classList.remove('menu-open');
   });
+});
+
+document.addEventListener('keydown', (event) => {
+  if (event.key === 'Escape' && nav.classList.contains('open')) {
+    menuButton.setAttribute('aria-expanded', 'false');
+    nav.classList.remove('open');
+    document.body.classList.remove('menu-open');
+    menuButton.focus();
+  }
 });
 
 const observer = new IntersectionObserver((entries) => {
