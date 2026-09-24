@@ -44,7 +44,7 @@ button { font: inherit; }
 .hero { position: relative; min-height: 100svh; display: flex; align-items: flex-end; overflow: hidden; background: var(--ink); color: white; }
 .hero::after { content: ""; position: absolute; right: -12vw; bottom: -22vw; width: 48vw; height: 48vw; border: 1px solid rgba(255,255,255,.18); border-radius: 50%; box-shadow: 0 0 0 6vw rgba(255,255,255,.04), 0 0 0 12vw rgba(255,255,255,.025); }
 .hero-image { position: absolute; inset: 0; height: 100%; object-fit: cover; object-position: center; animation: heroIn 1.4s ease-out both; }
-.hero-shade { position: absolute; inset: 0; background: linear-gradient(90deg, rgba(4,34,38,.82) 0%, rgba(4,34,38,.44) 53%, rgba(4,34,38,.12) 100%), linear-gradient(0deg, rgba(4,34,38,.58), transparent 45%); }
+.hero-shade { position: absolute; inset: 0; background: linear-gradient(90deg, rgba(4,34,38,.76) 0%, rgba(4,34,38,.68) 34%, rgba(4,34,38,.24) 52%, rgba(4,34,38,.04) 64%, transparent 74%), linear-gradient(0deg, rgba(4,34,38,.2), transparent 38%); }
 .hero-content { position: relative; z-index: 2; width: min(900px, 74vw); padding: 10rem clamp(1.4rem, 7vw, 8rem) 8rem; }
 .hero h1 { margin: 0; max-width: 800px; font: 400 clamp(4rem, 8.6vw, 8.6rem)/.86 var(--serif); letter-spacing: -.055em; }
 .hero h1 em { color: #bde9df; font-style: italic; }
@@ -180,6 +180,8 @@ button { font: inherit; }
   .site-header { padding: 1rem 1.15rem; }
   .brand strong { font-size: 1.25rem; }
   .hero { min-height: 860px; }
+  .hero-image { object-position: 66% center; }
+  .hero-shade { background: linear-gradient(90deg, rgba(4,34,38,.6), rgba(4,34,38,.24)), linear-gradient(0deg, rgba(4,34,38,.34), transparent 48%); }
   .hero-content { padding: 9rem 1.25rem 6rem; }
   .hero h1 { font-size: clamp(3.8rem, 18vw, 6.2rem); }
   .hero-copy { max-width: 92%; }
