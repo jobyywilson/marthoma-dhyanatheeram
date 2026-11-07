@@ -91,8 +91,8 @@ button { font: inherit; }
 .stay-actions { display: flex; flex-wrap: wrap; align-items: center; gap: .85rem 1.25rem; margin-top: 1.75rem; }
 .photo-link { color: var(--ink-2); font-size: .86rem; font-weight: 700; text-decoration: underline; text-underline-offset: .24em; }
 
-.facilities { background: white; }
-.facilities-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 1rem; margin-top: 2.8rem; }
+.facilities.section { padding-block: clamp(3rem, 5vw, 5rem); background: white; }
+.facilities-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 1rem; margin-top: 1.75rem; }
 .facility { padding: clamp(1.25rem, 2.6vw, 2.25rem); border: 1px solid var(--line); border-radius: .6rem; background: var(--paper); }
 .facility h3 { margin: 0 0 1rem; font: 400 1.85rem/1.1 var(--serif); }
 .facility ul { margin: 0; padding-left: 1.15rem; color: #496468; }
@@ -212,7 +212,7 @@ body:has(.photo-dialog[open]) { overflow: hidden; }
   .experience-image-wrap img { height: auto; }
   .experience-panel { justify-content: flex-start; padding: 4.5rem 1.25rem; }
   .stay-copy { grid-row: 1; }
-  .facilities-grid { grid-template-columns: 1fr; margin-top: 2rem; }
+  .facilities-grid { grid-template-columns: 1fr; margin-top: 1.5rem; }
   .gallery-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
   .gallery-wide img { height: auto; aspect-ratio: 4/3; }
   .project-heading { gap: 2rem; }
