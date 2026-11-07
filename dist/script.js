@@ -41,3 +41,18 @@ const observer = new IntersectionObserver((entries) => {
 
 document.querySelectorAll('.reveal').forEach((element) => observer.observe(element));
 document.querySelector('[data-year]').textContent = new Date().getFullYear();
+
+const photoDialog = document.querySelector('[data-photo-dialog]');
+const fullPhoto = photoDialog.querySelector('[data-full-photo]');
+const photoCaption = photoDialog.querySelector('figcaption');
+
+document.querySelectorAll('[data-photo]').forEach((link) => {
+  link.addEventListener('click', (event) => {
+    if (!photoDialog.showModal || event.ctrlKey || event.metaKey || event.shiftKey || event.altKey) return;
+    event.preventDefault();
+    fullPhoto.src = link.href;
+    fullPhoto.alt = link.querySelector('img')?.alt || link.dataset.caption;
+    photoCaption.textContent = link.dataset.caption;
+    photoDialog.showModal();
+  });
+});
