@@ -52,19 +52,24 @@
       <a class="scroll-cue" href="#about" aria-label="Scroll to learn more"><span></span>Explore</a>
     </section>
 
-    <section class="intro section" id="about">
-      <div class="section-kicker reveal">A place set apart</div>
+    <section class="intro section" id="about" aria-labelledby="about-title">
+      <div class="intro-toolbar">
+        <button class="text-link intro-link" type="button" data-about-dialog="about-share" aria-haspopup="dialog" hidden>Share <span aria-hidden="true">↗</span></button>
+      </div>
       <div class="intro-grid">
-        <h2 class="display reveal">Still waters.<br>Open hearts.</h2>
-        <div class="intro-copy reveal">
+        <div class="intro-copy">
+          <p class="section-kicker">A place set apart</p>
+          <h2 class="display" id="about-title">Still waters.<br>Open hearts.</h2>
           <p class="lead">Mar Thoma Dhyanatheeram is a lakeside meditation and retreat centre where nature, faith and community meet.</p>
           <p>Located at Perungalam beside Ashtamudi Lake and close to Munroe Island, the centre welcomes individuals, families and groups seeking rest, spiritual renewal and deeper connection.</p>
+          <button class="text-link intro-link" type="button" data-about-dialog="about-more" aria-haspopup="dialog" hidden>Read more <span aria-hidden="true">↗</span></button>
           <div class="facts">
             <div><strong>Ashtamudi</strong><span>Lakeside setting</span></div>
             <div><strong>Holistic</strong><span>Retreat experience</span></div>
             <div><strong>Inclusive</strong><span>For every generation</span></div>
           </div>
         </div>
+        <img class="intro-photo" src="assets/dhyanatheeram-building.png" alt="The Dhyanatheeram building and its courtyard fountain under a blue sky" loading="lazy" width="314" height="516">
       </div>
     </section>
 
@@ -336,6 +341,26 @@
       </div>
     </section>
   </main>
+  <dialog class="info-dialog" id="about-more" aria-labelledby="about-more-title">
+    <form method="dialog">
+      <button type="submit" autofocus>Close <span aria-hidden="true">×</span></button>
+    </form>
+    <h2 id="about-more-title">Still waters. Open hearts.</h2>
+    <p>Come for a day by Ashtamudi Lake or stay overnight in one of the retreat’s guest rooms. The gardens and paved paths offer space for a quiet walk, and the prayer and reflection areas welcome time for meditation.</p>
+    <p>The centre also has meeting spaces for group retreats and an open-air amphitheater for prayer, fellowship and cultural events.</p>
+  </dialog>
+  <dialog class="info-dialog" id="about-share" aria-labelledby="about-share-title">
+    <form method="dialog">
+      <button type="submit" autofocus>Close <span aria-hidden="true">×</span></button>
+    </form>
+    <h2 id="about-share-title">Share this section</h2>
+    <label for="about-share-url">Link to Still waters. Open hearts.</label>
+    <div class="share-controls">
+      <input id="about-share-url" type="url" readonly>
+      <button class="button button-primary" type="button" data-copy-about>Copy link</button>
+    </div>
+    <p class="share-status" role="status"></p>
+  </dialog>
   <dialog class="photo-dialog" data-photo-dialog aria-labelledby="photo-caption">
     <form method="dialog">
       <button type="submit" autofocus>Close <span aria-hidden="true">×</span></button>

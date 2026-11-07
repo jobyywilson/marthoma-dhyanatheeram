@@ -126,3 +126,30 @@ document.querySelectorAll('[data-photo]').forEach((link) => {
     photoDialog.showModal();
   });
 });
+
+const aboutShare = document.querySelector('#about-share');
+const aboutShareUrl = aboutShare.querySelector('input');
+const aboutShareStatus = aboutShare.querySelector('[role="status"]');
+
+document.querySelectorAll('[data-about-dialog]').forEach((button) => {
+  const dialog = document.getElementById(button.dataset.aboutDialog);
+  if (!dialog.showModal) return;
+  button.hidden = false;
+  button.addEventListener('click', () => {
+    if (dialog === aboutShare) {
+      aboutShareUrl.value = new URL('#about', window.location.href).href;
+      aboutShareStatus.textContent = '';
+    }
+    dialog.showModal();
+  });
+});
+
+aboutShare.querySelector('[data-copy-about]').addEventListener('click', async () => {
+  try {
+    await navigator.clipboard.writeText(aboutShareUrl.value);
+    aboutShareStatus.textContent = 'Link copied.';
+  } catch {
+    aboutShareUrl.select();
+    aboutShareStatus.textContent = 'Copy the selected link.';
+  }
+});
