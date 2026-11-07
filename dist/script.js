@@ -74,6 +74,26 @@ function syncHeroRotation() {
 reducedMotion.addEventListener('change', syncHeroRotation);
 syncHeroRotation();
 
+const roomCarousel = document.querySelector('[data-room-carousel]');
+const roomPhotos = roomCarousel.querySelector('.room-photos');
+const roomSlides = roomPhotos.children;
+
+roomCarousel.querySelectorAll('[data-room-step]').forEach((button) => {
+  button.hidden = false;
+  button.addEventListener('click', () => {
+    const direction = Number(button.dataset.roomStep);
+    const current = roomPhotos.scrollLeft;
+    const end = roomPhotos.scrollWidth - roomPhotos.clientWidth;
+    const step = roomSlides[1].offsetLeft - roomSlides[0].offsetLeft;
+    let target = current + direction * step;
+
+    if (direction > 0 && current >= end - 1) target = 0;
+    if (direction < 0 && current <= 1) target = end;
+
+    roomPhotos.scrollTo({ left: target });
+  });
+});
+
 const photoDialog = document.querySelector('[data-photo-dialog]');
 const fullPhoto = photoDialog.querySelector('[data-full-photo]');
 const photoCaption = photoDialog.querySelector('figcaption');

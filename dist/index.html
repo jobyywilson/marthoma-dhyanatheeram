@@ -23,6 +23,7 @@
     <nav id="site-nav" class="site-nav" data-nav>
       <a href="#about">About</a>
       <a href="#stay">Stay &amp; visit</a>
+      <a href="#rooms">Rooms</a>
       <a href="#facilities">Facilities</a>
       <a href="#gallery">Gallery</a>
       <a href="#project">Modernization</a>
@@ -99,6 +100,27 @@
           </div>
         </div>
       </div>
+    </section>
+
+    <section class="rooms section" id="rooms" aria-labelledby="rooms-title">
+      <h2 class="display" id="rooms-title">Rooms</h2>
+      <p class="rooms-intro">Settle into an air-conditioned guest room with a large bed, bedside power outlets and space to unpack.</p>
+      <div class="room-carousel" data-room-carousel>
+        <div class="room-photos" id="room-photos">
+          <a href="assets/guest-room.webp" data-photo data-caption="Guest room at Dhyanatheeram">
+            <img src="assets/guest-room.webp" alt="Guest room with a double bed, warm lighting and full-length curtains" loading="lazy" width="1024" height="768">
+          </a>
+          <a href="assets/guest-room-window.webp" data-photo data-caption="Guest room by the window">
+            <img src="assets/guest-room-window.webp" alt="A double bed beside a tall window with curtains" loading="lazy" width="768" height="1024">
+          </a>
+          <a href="assets/guest-room-interior.webp" data-photo data-caption="Guest room interior">
+            <img src="assets/guest-room-interior.webp" alt="A neatly made bed against a lit wooden headboard" loading="lazy" width="768" height="1024">
+          </a>
+        </div>
+        <button class="room-arrow room-arrow-prev" type="button" aria-label="Previous room photo" aria-controls="room-photos" data-room-step="-1" hidden><span aria-hidden="true">‹</span></button>
+        <button class="room-arrow room-arrow-next" type="button" aria-label="Next room photo" aria-controls="room-photos" data-room-step="1" hidden><span aria-hidden="true">›</span></button>
+      </div>
+      <a class="button button-primary rooms-enquiry" href="#contact">Enquire about rooms <span aria-hidden="true">↗</span></a>
     </section>
 
     <section class="facilities section" id="facilities" aria-labelledby="facilities-title">
@@ -260,7 +282,6 @@
 
     <section class="location section" id="location" aria-labelledby="location-title">
       <div>
-        <p class="section-kicker">Perungalam · Kollam</p>
         <h2 class="display" id="location-title">Location &amp;<br>Directions</h2>
         <div class="location-options">
           <details name="arrival-options" open>

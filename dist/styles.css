@@ -91,6 +91,21 @@ button { font: inherit; }
 .stay-actions { display: flex; flex-wrap: wrap; align-items: center; gap: .85rem 1.25rem; margin-top: 1.75rem; }
 .photo-link { color: var(--ink-2); font-size: .86rem; font-weight: 700; text-decoration: underline; text-underline-offset: .24em; }
 
+.rooms.section { padding-block: clamp(3rem, 5vw, 5rem); background: #e5f2ed; }
+.rooms-intro { max-width: 37rem; margin: 1rem 0 1.8rem; color: #496468; }
+.room-carousel { position: relative; }
+.room-photos { --photo-gap: 1rem; display: grid; grid-auto-flow: column; grid-auto-columns: calc((100% - var(--photo-gap)) / 2); gap: var(--photo-gap); overflow-x: auto; scroll-snap-type: x mandatory; scroll-behavior: smooth; scrollbar-width: thin; }
+.room-photos a { display: block; overflow: hidden; border-radius: .65rem; scroll-snap-align: start; }
+.room-photos a:focus-visible { outline: 3px solid var(--teal); outline-offset: -4px; }
+.room-photos img { aspect-ratio: 5 / 4; height: auto; object-fit: cover; }
+.room-arrow { position: absolute; top: 50%; width: 2.75rem; height: 2.75rem; padding: 0; transform: translateY(-50%); border: 1px solid var(--line); border-radius: 50%; background: white; color: var(--ink); font-size: 1.75rem; line-height: 1; box-shadow: 0 2px 8px rgba(8,47,52,.15); cursor: pointer; }
+.room-arrow:not([hidden]) { display: grid; place-items: center; }
+.room-arrow:hover { background: var(--paper); }
+.room-arrow:focus-visible { outline: 2px solid var(--teal); outline-offset: 2px; }
+.room-arrow-prev { left: -.65rem; }
+.room-arrow-next { right: -.65rem; }
+.rooms-enquiry { margin-top: 1.6rem; }
+
 .facilities.section { padding-block: clamp(3rem, 5vw, 5rem); background: white; }
 .facilities-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 1rem; margin-top: 1.75rem; }
 .facility { padding: clamp(1.25rem, 2.6vw, 2.25rem); border: 1px solid var(--line); border-radius: .6rem; background: var(--paper); }
@@ -212,6 +227,7 @@ body:has(.photo-dialog[open]) { overflow: hidden; }
   .experience-image-wrap img { height: auto; }
   .experience-panel { justify-content: flex-start; padding: 4.5rem 1.25rem; }
   .stay-copy { grid-row: 1; }
+  .room-photos { grid-auto-columns: 100%; }
   .facilities-grid { grid-template-columns: 1fr; margin-top: 1.5rem; }
   .gallery-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
   .gallery-wide img { height: auto; aspect-ratio: 4/3; }
@@ -229,6 +245,7 @@ body:has(.photo-dialog[open]) { overflow: hidden; }
 
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto; }
+  .room-photos { scroll-behavior: auto; }
   *, *::before, *::after { animation-duration: .01ms !important; animation-iteration-count: 1 !important; transition-duration: .01ms !important; }
   .reveal { opacity: 1; transform: none; }
 }
