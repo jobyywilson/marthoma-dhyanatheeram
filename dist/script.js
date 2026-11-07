@@ -74,6 +74,23 @@ function syncHeroRotation() {
 reducedMotion.addEventListener('change', syncHeroRotation);
 syncHeroRotation();
 
+const introPhotos = document.querySelector('.intro-photos');
+const introImages = Array.from(introPhotos.querySelectorAll('img'));
+let introPhotoTimer;
+
+const introPhotoObserver = new IntersectionObserver(([entry]) => {
+  window.clearInterval(introPhotoTimer);
+  if (entry.intersectionRatio < 0.35) return;
+
+  introPhotoTimer = window.setInterval(() => {
+    if (document.hidden || reducedMotion.matches) return;
+    if (introImages.every((image) => image.complete && image.naturalWidth > 0)) {
+      introPhotos.classList.toggle('show-evening');
+    }
+  }, photoInterval);
+}, { threshold: 0.35 });
+introPhotoObserver.observe(introPhotos);
+
 const photoDialog = document.querySelector('[data-photo-dialog]');
 const roomCarousel = document.querySelector('[data-room-carousel]');
 const roomPhotos = roomCarousel.querySelector('.room-photos');
