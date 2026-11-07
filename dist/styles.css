@@ -46,8 +46,8 @@ button { font: inherit; }
 .hero-image.is-current { z-index: 1; transition: opacity 1s ease; }
 .hero-shade { position: absolute; inset: 0; background: linear-gradient(180deg, rgba(4,34,38,.68), transparent 27%), linear-gradient(90deg, rgba(4,34,38,.76), rgba(4,34,38,.55) 38%, transparent 77%), linear-gradient(0deg, rgba(4,34,38,.48), transparent 44%); }
 .hero-content { position: relative; z-index: 2; width: min(900px, 74vw); padding: 10rem clamp(1.4rem, 7vw, 8rem) 8rem; text-shadow: 0 2px 24px rgba(2,24,28,.28); }
-.hero h1 { margin: 0; max-width: 800px; font: 400 clamp(4rem, 8.6vw, 8.6rem)/.86 var(--serif); letter-spacing: -.055em; }
-.hero h1 em { color: #bde9df; font-style: italic; }
+.hero h1 { margin: 0; max-width: 800px; font: 400 clamp(3.5rem, 6.6vw, 7.25rem)/.9 var(--serif); letter-spacing: -.045em; text-wrap: balance; }
+.hero h1 em { display: block; color: #bde9df; font-style: italic; }
 .hero-copy { max-width: 610px; margin: 2.2rem 0 0; color: rgba(255,255,255,.83); font-size: clamp(1rem, 1.5vw, 1.25rem); line-height: 1.65; }
 .hero-actions { display: flex; flex-wrap: wrap; gap: .9rem; margin-top: 2.3rem; }
 .button { display: inline-flex; align-items: center; justify-content: center; gap: .8rem; min-height: 3.4rem; padding: 0 1.5rem; border-radius: 999px; font-size: .86rem; font-weight: 700; transition: transform .25s, background .25s, color .25s, border-color .25s; }
@@ -182,7 +182,7 @@ body:has(.photo-dialog[open]) { overflow: hidden; }
   .hero-shade { background: linear-gradient(180deg, rgba(4,34,38,.55), transparent 23%), linear-gradient(0deg, rgba(4,34,38,.92), rgba(4,34,38,.62) 49%, transparent 85%); }
   .hero-content { text-shadow: 0 2px 16px rgba(2,24,28,.72), 0 1px 2px rgba(2,24,28,.85); }
   .hero-content { padding: 9rem 1.25rem 6rem; }
-  .hero h1 { font-size: clamp(3.8rem, 18vw, 6.2rem); }
+  .hero h1 { font-size: clamp(2.75rem, 11vw, 5.1rem); }
   .hero-copy { max-width: 92%; }
   .scroll-cue { display: none; }
   .intro-grid, .experience, .stay-grid, .project-heading, .heritage, .contact-top { grid-template-columns: 1fr; }
