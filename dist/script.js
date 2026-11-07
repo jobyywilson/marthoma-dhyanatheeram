@@ -43,7 +43,6 @@ document.querySelectorAll('.reveal').forEach((element) => observer.observe(eleme
 document.querySelector('[data-year]').textContent = new Date().getFullYear();
 
 const heroSlides = Array.from(document.querySelectorAll('.hero-image'));
-const rotationButton = document.querySelector('[data-hero-rotation]');
 const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
 const photoInterval = 7000;
 let currentSlide = 0;
@@ -67,16 +66,13 @@ function advanceHeroPhoto() {
   }
 }
 
-function setHeroRotation(playing) {
+function syncHeroRotation() {
   window.clearInterval(rotationTimer);
-  rotationTimer = playing ? window.setInterval(advanceHeroPhoto, photoInterval) : undefined;
-  rotationButton.textContent = playing ? 'Pause photos' : 'Play photos';
+  rotationTimer = reducedMotion.matches ? undefined : window.setInterval(advanceHeroPhoto, photoInterval);
 }
 
-rotationButton.addEventListener('click', () => setHeroRotation(rotationTimer === undefined));
-reducedMotion.addEventListener('change', () => setHeroRotation(!reducedMotion.matches));
-setHeroRotation(!reducedMotion.matches);
-rotationButton.hidden = false;
+reducedMotion.addEventListener('change', syncHeroRotation);
+syncHeroRotation();
 
 const photoDialog = document.querySelector('[data-photo-dialog]');
 const fullPhoto = photoDialog.querySelector('[data-full-photo]');
