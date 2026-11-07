@@ -56,10 +56,6 @@ button { font: inherit; }
 .button-primary:hover { background: #b91f25; }
 .button-quiet { border: 1px solid rgba(255,255,255,.6); color: white; }
 .button-quiet:hover { background: white; color: var(--ink); }
-.hero-note { position: absolute; z-index: 2; right: clamp(1.4rem, 5vw, 5rem); top: 43%; width: 260px; display: grid; grid-template-columns: auto 1fr; gap: 1rem; padding: 1.1rem; border: 1px solid rgba(255,255,255,.24); border-radius: .9rem; background: rgba(4,34,38,.5); backdrop-filter: blur(10px); color: white; }
-.hero-note > span { font: 400 2.4rem/1 var(--serif); color: var(--mint); }
-.hero-note p { margin: 0; font-size: .77rem; line-height: 1.5; }
-.hero-note strong { display: block; margin-bottom: .25rem; font-size: .85rem; }
 .scroll-cue { position: absolute; z-index: 2; right: 2rem; bottom: 1.8rem; display: flex; align-items: center; gap: .7rem; font-size: .7rem; font-weight: 700; letter-spacing: .14em; text-transform: uppercase; writing-mode: vertical-rl; }
 .scroll-cue span { width: 1px; height: 3rem; background: white; }
 
@@ -171,7 +167,6 @@ body:has(.photo-dialog[open]) { overflow: hidden; }
   .menu-button[aria-expanded="true"] span:nth-child(2) { opacity: 0; }
   .menu-button[aria-expanded="true"] span:nth-child(3) { transform: translateY(-6px) rotate(-45deg); }
   .hero-content { width: 100%; padding-bottom: 7rem; }
-  .hero-note { display: none; }
   .project-cards { grid-template-columns: 1fr 1fr; }
   .project-card-feature { grid-column: 1 / -1; }
   .leadership-grid { grid-template-columns: 1fr; }
