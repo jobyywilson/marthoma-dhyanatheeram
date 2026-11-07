@@ -59,15 +59,6 @@ button { font: inherit; }
 .scroll-cue { position: absolute; z-index: 2; right: 2rem; bottom: 1.8rem; display: flex; align-items: center; gap: .7rem; font-size: .7rem; font-weight: 700; letter-spacing: .14em; text-transform: uppercase; writing-mode: vertical-rl; }
 .scroll-cue span { width: 1px; height: 3rem; background: white; }
 
-.intro { background: var(--paper); }
-.intro-grid { display: grid; grid-template-columns: 1.1fr .9fr; gap: clamp(3rem, 9vw, 10rem); align-items: start; }
-.intro-copy { padding-top: .6rem; }
-.intro-copy p { color: #496468; }
-.intro-copy .lead { margin-top: 0; color: var(--ink); font: 400 clamp(1.35rem, 2vw, 2rem)/1.45 var(--serif); }
-.facts { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1rem; margin-top: 3.5rem; padding-top: 1.6rem; border-top: 1px solid var(--line); }
-.facts strong { display: block; color: var(--teal); font-family: var(--serif); font-size: 1.55rem; font-weight: 400; }
-.facts span { display: block; color: #6e8587; font-size: .72rem; font-weight: 600; }
-
 .experience { display: grid; grid-template-columns: 1.15fr .85fr; min-height: 760px; background: #0b6068; color: white; }
 .experience-image-wrap { position: relative; min-height: 620px; overflow: hidden; }
 .experience-image-wrap::after { content: ""; position: absolute; inset: 0; background: linear-gradient(0deg, rgba(4,34,38,.4), transparent 45%); }
@@ -204,10 +195,7 @@ body:has(.photo-dialog[open]) { overflow: hidden; }
   .hero h1 { font-size: clamp(2.75rem, 11vw, 5.1rem); }
   .hero-copy { max-width: 92%; }
   .scroll-cue { display: none; }
-  .intro-grid, .experience, .stay-grid, .project-heading, .heritage, .location, .contact-top { grid-template-columns: 1fr; }
-  .intro-grid { gap: 2.2rem; }
-  .facts { grid-template-columns: 1fr; }
-  .facts div { display: flex; align-items: baseline; justify-content: space-between; }
+  .experience, .stay-grid, .project-heading, .heritage, .location, .contact-top { grid-template-columns: 1fr; }
   .experience-image-wrap { min-height: 0; }
   .experience-image-wrap img { height: auto; }
   .experience-panel { justify-content: flex-start; padding: 4.5rem 1.25rem; }
