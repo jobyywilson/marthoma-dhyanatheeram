@@ -31,7 +31,11 @@
 
   <main>
     <section class="hero" id="home" aria-labelledby="hero-title">
-      <img class="hero-image" src="assets/perungalam-lakeside.webp" srcset="assets/perungalam-lakeside-960.webp 960w, assets/perungalam-lakeside.webp 1600w" sizes="100vw" alt="Aerial view of Dhyanatheeram on a palm-covered shore of Ashtamudi Lake" fetchpriority="high" width="1600" height="1200">
+      <div class="hero-images" aria-hidden="true">
+        <img class="hero-image is-current" src="assets/ashtamudi-waterfront.webp" alt="" fetchpriority="high" width="1600" height="1063">
+        <img class="hero-image" src="assets/retreat-campus.webp" alt="" fetchpriority="low" width="1600" height="1200">
+        <img class="hero-image" src="assets/perungalam-lakeside.webp" srcset="assets/perungalam-lakeside-960.webp 960w, assets/perungalam-lakeside.webp 1600w" sizes="100vw" alt="" fetchpriority="low" width="1600" height="1200">
+      </div>
       <div class="hero-shade"></div>
       <div class="hero-content">
         <p class="eyebrow">Perungalam · Kollam · Kerala</p>
@@ -46,6 +50,7 @@
         <span>01</span>
         <p><strong>A ministry of the Mar Thoma Syrian Church</strong>Thiruvananthapuram–Kollam Diocese</p>
       </div>
+      <button class="hero-rotation" type="button" data-hero-rotation hidden>Pause photos</button>
       <a class="scroll-cue" href="#about" aria-label="Scroll to learn more"><span></span>Explore</a>
     </section>
 
