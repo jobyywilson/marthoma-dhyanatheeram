@@ -68,9 +68,6 @@ button { font: inherit; }
 .intro-copy .lead { margin-top: 1.5rem; font-size: 1.1rem; }
 .intro-link { padding: 0; border: 0; background: none; cursor: pointer; }
 .intro-photo { width: 100%; height: auto; max-width: 38rem; aspect-ratio: 1; object-fit: cover; border-radius: .5rem; }
-.facts { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1rem; margin-top: 1.7rem; padding-top: 1rem; border-top: 1px solid var(--line); }
-.facts strong { display: block; color: var(--teal); font-family: var(--serif); font-size: 1.55rem; font-weight: 400; }
-.facts span { display: block; color: #6e8587; font-size: .72rem; font-weight: 600; }
 
 .experience { display: grid; grid-template-columns: 1.15fr .85fr; min-height: 760px; background: #0b6068; color: white; }
 .experience-image-wrap { position: relative; min-height: 620px; overflow: hidden; }
@@ -237,8 +234,6 @@ body:has(.photo-dialog[open], .info-dialog[open]) { overflow: hidden; }
   .scroll-cue { display: none; }
   .intro-grid, .experience, .stay-grid, .project-heading, .heritage, .location, .contact-top { grid-template-columns: 1fr; }
   .intro-grid { gap: 2.2rem; }
-  .facts { grid-template-columns: 1fr; }
-  .facts div { display: flex; align-items: baseline; justify-content: space-between; }
   .experience-image-wrap { min-height: 0; }
   .experience-image-wrap img { height: auto; }
   .experience-panel { justify-content: flex-start; padding: 4.5rem 1.25rem; }
