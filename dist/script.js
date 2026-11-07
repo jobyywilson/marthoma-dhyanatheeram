@@ -74,27 +74,45 @@ function syncHeroRotation() {
 reducedMotion.addEventListener('change', syncHeroRotation);
 syncHeroRotation();
 
+const photoDialog = document.querySelector('[data-photo-dialog]');
 const roomCarousel = document.querySelector('[data-room-carousel]');
 const roomPhotos = roomCarousel.querySelector('.room-photos');
 const roomSlides = roomPhotos.children;
+const roomPhotoInterval = 5000;
+const canHover = window.matchMedia('(hover: hover)');
+let roomPhotoTimer;
+
+function scrollRoomPhotos(direction) {
+  const current = roomPhotos.scrollLeft;
+  const end = roomPhotos.scrollWidth - roomPhotos.clientWidth;
+  const step = roomSlides[1].offsetLeft - roomSlides[0].offsetLeft;
+  let target = current + direction * step;
+
+  if (direction > 0 && current >= end - 1) target = 0;
+  if (direction < 0 && current <= 1) target = end;
+
+  roomPhotos.scrollTo({ left: target });
+}
 
 roomCarousel.querySelectorAll('[data-room-step]').forEach((button) => {
   button.hidden = false;
-  button.addEventListener('click', () => {
-    const direction = Number(button.dataset.roomStep);
-    const current = roomPhotos.scrollLeft;
-    const end = roomPhotos.scrollWidth - roomPhotos.clientWidth;
-    const step = roomSlides[1].offsetLeft - roomSlides[0].offsetLeft;
-    let target = current + direction * step;
-
-    if (direction > 0 && current >= end - 1) target = 0;
-    if (direction < 0 && current <= 1) target = end;
-
-    roomPhotos.scrollTo({ left: target });
-  });
+  button.addEventListener('click', () => scrollRoomPhotos(Number(button.dataset.roomStep)));
 });
 
-const photoDialog = document.querySelector('[data-photo-dialog]');
+function advanceRoomPhoto() {
+  const hovering = canHover.matches && roomCarousel.matches(':hover');
+  if (document.hidden || reducedMotion.matches || hovering || roomCarousel.matches(':focus-within') || photoDialog.open) return;
+  scrollRoomPhotos(1);
+}
+
+const roomObserver = new IntersectionObserver(([entry]) => {
+  window.clearInterval(roomPhotoTimer);
+  if (entry.intersectionRatio >= 0.5) {
+    roomPhotoTimer = window.setInterval(advanceRoomPhoto, roomPhotoInterval);
+  }
+}, { threshold: 0.5 });
+roomObserver.observe(roomCarousel);
+
 const fullPhoto = photoDialog.querySelector('[data-full-photo]');
 const photoCaption = photoDialog.querySelector('figcaption');
 
