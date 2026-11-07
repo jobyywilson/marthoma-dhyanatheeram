@@ -136,10 +136,17 @@ body:has(.photo-dialog[open]) { overflow: hidden; }
 .names strong { display: block; font-size: .88rem; line-height: 1.45; }
 .names span { display: block; margin-top: .35rem; color: #6b8588; font-size: .72rem; }
 
-.location { display: grid; grid-template-columns: .9fr 1.1fr; align-items: center; gap: clamp(2rem, 5vw, 5.5rem); background: #e5f2ed; }
-.location address { margin-top: 1.6rem; color: #496468; font-style: normal; }
+.location { display: grid; grid-template-columns: 1fr 1.08fr; align-items: start; gap: clamp(2rem, 5vw, 5.5rem); background: #e5f2ed; }
+.location-options { margin-top: 1.75rem; }
+.location-options details { border-bottom: 1px solid var(--line); }
+.location-options summary { display: flex; align-items: center; justify-content: space-between; gap: 1rem; min-height: 3.5rem; padding: .75rem 0; list-style: none; font-weight: 700; cursor: pointer; }
+.location-options summary::-webkit-details-marker { display: none; }
+.location-options summary span::after { content: "+"; color: var(--teal); font-size: 1.25rem; font-weight: 500; }
+.location-options details[open] summary span::after { content: "−"; }
+.location-options details > p { margin: 0 0 1.25rem; color: #496468; }
+.location address { color: #496468; font-style: normal; }
 .location address strong { color: var(--ink); }
-.location-actions { display: flex; flex-wrap: wrap; align-items: center; gap: .85rem 1.25rem; margin-top: 1.6rem; }
+.location-actions { display: flex; flex-wrap: wrap; align-items: center; gap: .85rem 1.25rem; margin: 1rem 0 1.25rem; }
 .location-map { display: block; width: 100%; height: clamp(21rem, 38vw, 32rem); border: 0; border-radius: .6rem; background: var(--paper); }
 .text-link { color: var(--ink-2); font-size: .86rem; font-weight: 700; text-decoration: underline; text-underline-offset: .24em; }
 
