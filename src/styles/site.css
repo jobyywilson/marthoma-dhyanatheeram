@@ -8,7 +8,7 @@
   --red: #dc2f2f;
   --paper: #f7faf7;
   --white: #ffffff;
-  --header-clearance: 5.25rem;
+  --header-clearance: 6.5rem;
   --line: rgba(8, 47, 52, .15);
   --sans: "DM Sans", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
   --serif: "Libre Caslon Display", Georgia, serif;
@@ -33,7 +33,7 @@ button { font: inherit; }
 .site-header.scrolled { padding-top: .5rem; padding-bottom: .5rem; background: rgba(7,63,69,.94); backdrop-filter: blur(16px); box-shadow: 0 10px 30px rgba(0,0,0,.12); }
 .brand { display: flex; align-items: center; gap: .8rem; }
 .brand-logo { width: clamp(10rem, 16vw, 12rem); height: auto; }
-.site-header .brand-logo { width: 11rem; }
+.site-header .brand-logo { width: 13.75rem; }
 .site-nav { display: flex; align-items: center; gap: 2rem; font-size: .88rem; font-weight: 600; }
 .site-nav > a { position: relative; }
 .site-nav > a::after { content: ""; position: absolute; left: 0; bottom: -.35rem; width: 100%; height: 1px; background: currentColor; transform: scaleX(0); transform-origin: left; transition: transform .25s; }
@@ -298,8 +298,8 @@ body:has(.info-dialog[open]) { overflow: hidden; }
 }
 
 @media (max-width: 1000px) {
-  :root { --header-clearance: 4.5rem; }
-  .site-header .brand-logo { width: 9rem; }
+  :root { --header-clearance: 5.25rem; }
+  .site-header .brand-logo { width: 10.35rem; }
   .site-header, .site-header.scrolled { backdrop-filter: none; }
   .site-header.scrolled { background: #073f45; }
   .site-header .brand { position: relative; z-index: 2; }

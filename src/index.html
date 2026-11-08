@@ -11,8 +11,33 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Libre+Caslon+Display&display=swap" rel="stylesheet">
   <link rel="icon" type="image/png" sizes="1254x1254" href="/assets/dhyanatheeram-tab-icon.png">
+  <style>
+    #site-loader { display: none; }
+    .site-loading #site-loader { position: fixed; inset: 0; z-index: 1000; display: grid; place-content: center; justify-items: center; gap: 1.25rem; background: #073f45; color: #f5f0e7; font-family: system-ui, sans-serif; }
+    .site-loader-ring { width: 3rem; height: 3rem; box-sizing: border-box; border: 3px solid rgba(245,240,231,.2); border-top-color: #b1d6bd; border-radius: 50%; animation: site-loader-spin .8s linear infinite; }
+    #site-loader p { margin: 0; font-size: .9375rem; letter-spacing: .04em; }
+    @keyframes site-loader-spin { to { transform: rotate(360deg); } }
+    @media (prefers-reduced-motion: reduce) { .site-loader-ring { animation: none; } }
+  </style>
+  <script>
+    (() => {
+      document.documentElement.classList.add('site-loading');
+      const finish = () => {
+        clearTimeout(timeout);
+        document.documentElement.classList.remove('site-loading');
+        document.getElementById('site-loader')?.remove();
+        window.removeEventListener('site:ready', finish);
+      };
+      const timeout = setTimeout(finish, 10000);
+      window.addEventListener('site:ready', finish, { once: true });
+    })();
+  </script>
 </head>
 <body>
+  <div id="site-loader" role="status" aria-live="polite">
+    <span class="site-loader-ring" aria-hidden="true"></span>
+    <p>Loading Dhyanatheeram&hellip;</p>
+  </div>
   <app-root></app-root>
 </body>
 </html>

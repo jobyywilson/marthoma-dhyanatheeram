@@ -1,5 +1,5 @@
 import { DOCUMENT, ViewportScroller } from '@angular/common';
-import { afterRenderEffect, Component, DestroyRef, ElementRef, inject, signal, viewChild } from '@angular/core';
+import { afterNextRender, afterRenderEffect, Component, DestroyRef, ElementRef, inject, signal, viewChild } from '@angular/core';
 import { Meta } from '@angular/platform-browser';
 import { NavigationEnd, Router, RouterLink, RouterLinkActive, RouterOutlet } from '@angular/router';
 
@@ -23,6 +23,7 @@ export class SiteShell {
   private readonly menuButton = viewChild.required<ElementRef<HTMLButtonElement>>('menuButton');
 
   constructor() {
+    afterNextRender(() => window.dispatchEvent(new Event('site:ready')));
     inject(ViewportScroller).setOffset(() => [0, (this.siteHeader()?.nativeElement.offsetHeight ?? 72) + 12]);
     const navigation = this.router.events.subscribe((event) => {
       if (!(event instanceof NavigationEnd)) return;
