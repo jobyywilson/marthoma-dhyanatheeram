@@ -1,0 +1,248 @@
+<section class="hero" id="home" aria-labelledby="hero-title">
+    <div class="hero-images" aria-hidden="true" #heroImages>
+      <img class="hero-image" [class.is-current]="currentSlide() === 0" [class.is-previous]="previousSlide() === 0" src="assets/ashtamudi-waterfront.webp" alt="" fetchpriority="high" width="1600" height="1063">
+      <img class="hero-image" [class.is-current]="currentSlide() === 1" [class.is-previous]="previousSlide() === 1" src="assets/retreat-campus.webp" alt="" fetchpriority="low" width="1600" height="1200">
+      <img class="hero-image" [class.is-current]="currentSlide() === 2" [class.is-previous]="previousSlide() === 2" src="assets/perungalam-lakeside.webp" srcset="assets/perungalam-lakeside-960.webp 960w, assets/perungalam-lakeside.webp 1600w" sizes="100vw" alt="" fetchpriority="low" width="1600" height="1200">
+    </div>
+    <div class="hero-shade"></div>
+    <div class="hero-content">
+      <p class="eyebrow">Perungalam Island · Ashtamudi Lake · Kollam</p>
+      <h1 id="hero-title">A place to pause, refresh and be renewed.</h1>
+      <p class="hero-copy">A lakeside home for prayer, quiet reflection and meaningful fellowship on the serene shores of Ashtamudi Lake.</p>
+      <div class="hero-actions">
+        <a class="button button-primary" href="#facilities-stay">Explore stays <span aria-hidden="true">↗</span></a>
+        <a class="button button-quiet" href="#contact">Booking enquiries</a>
+      </div>
+    </div>
+    <a class="scroll-cue" href="#about" aria-label="Scroll to learn more"><span></span>Explore</a>
+  </section>
+
+  <section class="intro section" id="about" aria-labelledby="about-title">
+    <div class="intro-grid">
+      <div class="intro-copy">
+        <p class="section-kicker">A place set apart</p>
+        <h2 class="display" id="about-title">A pilgrimage from the hustle and bustle <em>to the shore</em></h2>
+        <p class="lead">{{ aboutIntroduction }} This hidden gem, located on the shimmering Ashtamudi Lake, offers an atmosphere of unmatched tranquility and lush greenery, framed by towering coconut palms<span class="intro-full-ending"> that sway gently in the breeze, carrying the fresh scent of nature over the sparkling waters.</span><span class="intro-short-ending">.</span></p>
+        <div class="intro-actions">
+          <button class="text-link intro-link" type="button" aria-haspopup="dialog" [hidden]="!dialogsReady()" (click)="aboutMore.showModal()">Read more <span aria-hidden="true">↗</span></button>
+          <button class="text-link intro-link" type="button" aria-haspopup="dialog" [hidden]="!dialogsReady()" (click)="showShare()">Share <span aria-hidden="true">↗</span></button>
+        </div>
+      </div>
+      <video #introVideo class="intro-video" width="848" height="478" muted loop playsinline preload="none"
+        poster="assets/still-waters-poster.webp" aria-label="Video of Mar Thoma Dhyanatheeram">
+        <source src="assets/still-waters-loop.mp4" type="video/mp4">
+      </video>
+    </div>
+  </section>
+
+  <section class="experience" id="vision" #experienceCarousel role="region" aria-roledescription="carousel" aria-labelledby="experience-title" aria-describedby="experience-instructions" tabindex="0">
+    <p class="sr-only" id="experience-instructions">Swipe horizontally or use the experience buttons to explore. When focused, use Left and Right arrow keys, Home or End.</p>
+    <div class="experience-image-wrap reveal" #experienceImages data-experience-swipe>
+      @for (entry of experienceEntries; track entry.title; let i = $index) {
+        <img [class.experience-image-overlay]="i > 0" [class.is-current]="currentExperiencePhoto() === i" [class.is-previous]="previousExperiencePhoto() === i" [attr.aria-hidden]="currentExperiencePhoto() !== i" [src]="entry.photo.src" [alt]="entry.photo.alt" loading="lazy" [width]="entry.photo.width" [height]="entry.photo.height" [style.object-position]="entry.photo.position ?? '50% 50%'" draggable="false">
+      }
+    </div>
+    <div class="experience-panel reveal">
+      <h2 id="experience-title">Room to pause,<br>pray and reconnect.</h2>
+      <div class="experience-content" data-experience-swipe>
+        <div class="experience-navigation">
+          <p class="experience-counter" aria-hidden="true"><span>{{ (currentExperiencePhoto() + 1).toString().padStart(2, '0') }}</span> / {{ experienceEntries.length.toString().padStart(2, '0') }}</p>
+          <div class="experience-dots" role="group" aria-label="Choose an experience">
+            @for (entry of experienceEntries; track entry.title; let i = $index) {
+              <button class="experience-dot" type="button" [class.is-current]="currentExperiencePhoto() === i" [attr.aria-current]="currentExperiencePhoto() === i ? 'true' : null" [attr.aria-label]="'Show ' + entry.title + ', ' + (i + 1) + ' of ' + experienceEntries.length" [attr.aria-controls]="'experience-story-' + i" [tabIndex]="currentExperiencePhoto() === i ? 0 : -1" (click)="selectExperience(i)"><span aria-hidden="true"></span></button>
+            }
+          </div>
+        </div>
+        <div class="experience-stories" aria-live="off">
+          @for (entry of experienceEntries; track entry.title; let i = $index) {
+            <article class="experience-story" [class.is-current]="currentExperiencePhoto() === i" [class.has-summary]="!!entry.summary" [id]="'experience-story-' + i" role="group" aria-roledescription="slide" [attr.aria-label]="(i + 1) + ' of ' + experienceEntries.length" [attr.aria-hidden]="currentExperiencePhoto() !== i" [attr.inert]="currentExperiencePhoto() === i ? null : ''">
+              <h3 class="experience-entry-title">{{ entry.title }}</h3>
+              @if (entry.summary) {
+                <p class="experience-summary">{{ entry.summary }}</p>
+              }
+              @for (detail of entry.details; track detail) {
+                <p class="experience-detail">{{ detail }}</p>
+              }
+            </article>
+          }
+        </div>
+      </div>
+      <p class="sr-only" role="status" aria-live="polite" aria-atomic="true">{{ experienceAnnouncement() }}</p>
+
+    </div>
+  </section>
+
+  <section class="facilities" id="facilities" aria-labelledby="facilities-title">
+    <h2 class="sr-only" id="facilities-title">Facilities</h2>
+
+    <section class="facilities-section section" id="facilities-stay" aria-labelledby="facilities-stay-title">
+      <h3 class="display" id="facilities-stay-title">Stay &amp; Visit</h3>
+      <div class="facility-card-carousel">
+        <div class="facility-card-navigation" [hidden]="!stayCardNavigation().overflows">
+          <p class="sr-only" id="stay-swipe-hint">Swipe sideways, use the previous and next buttons, or use arrow keys while the cards are focused.</p>
+          <div class="facility-card-buttons" role="group" aria-label="Stay card navigation">
+            <button class="facility-card-arrow" type="button" aria-label="Previous stay card" aria-controls="stay-card-track" [disabled]="!stayCardNavigation().previous" (click)="scrollFacilityCards(stayCards, -1)">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="m14 6-6 6 6 6"/></svg>
+            </button>
+            <button class="facility-card-arrow" type="button" aria-label="Next stay card" aria-controls="stay-card-track" [disabled]="!stayCardNavigation().next" (click)="scrollFacilityCards(stayCards, 1)">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="m10 6 6 6-6 6"/></svg>
+            </button>
+          </div>
+        </div>
+        <div class="facility-cards facility-stay-cards" id="stay-card-track" #stayCards tabindex="0" role="region" aria-labelledby="facilities-stay-title" aria-describedby="stay-swipe-hint">
+          <article class="facility-card" aria-labelledby="stay-rooms-title">
+            <figure class="facility-card-photo room-photos" #roomImages>
+              <img class="room-photo-wide" [class.is-current]="currentRoomPhoto() === 0" [attr.aria-hidden]="currentRoomPhoto() !== 0" src="assets/guest-room-window-view.jpg" alt="Double bed with floral cushions beside a curtained window in a warmly lit guest room" loading="lazy" width="1199" height="1312">
+              <img class="room-photo-detail" [class.is-current]="currentRoomPhoto() === 1" [attr.aria-hidden]="currentRoomPhoto() !== 1" src="assets/guest-room-bed-detail.jpg" alt="Close view of the guest room's double bed, floral cushions, wooden headboard and bedside table" loading="lazy" width="1086" height="1448">
+            </figure>
+            <div class="facility-card-copy">
+              <p class="facility-card-label">Rooms &amp; Suites</p>
+              <h4 id="stay-rooms-title">Well-appointed Rooms</h4>
+              <p class="facility-card-description">Spacious, comfortable and thoughtfully designed.</p>
+              <ul class="stay-card-amenities" aria-label="Room amenities">
+                <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M3 18v-7a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2v7M3 15h18M5 9V5h14v4M3 18v2m18-2v2M8 9V7m8 2V7"/></svg><span>Comfortable beds</span></li>
+                <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M12 2v20M3.3 7l17.4 10M3.3 17 20.7 7M9 4l3 3 3-3M9 20l3-3 3 3M4 10l4-1-1-4M17 19l-1-4 4-1M4 14l4 1-1 4M17 5l-1 4 4 1"/></svg><span>Air conditioning</span></li>
+                <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M8 3v5m8-5v5M6 8h12v3a6 6 0 0 1-12 0V8Zm6 9v4"/></svg><span>Bedside power</span></li>
+              </ul>
+            </div>
+          </article>
+          <article class="facility-card" aria-labelledby="stay-cottage-title">
+            <figure class="facility-card-photo">
+              <img src="assets/proposed-lakeview-cottage.webp" alt="Architectural rendering of a proposed A-frame cottage with a glass-fronted upper floor" loading="lazy" width="605" height="403">
+            </figure>
+            <div class="facility-card-copy">
+              <p class="facility-card-label">Private cottage</p>
+              <h4 id="stay-cottage-title">Lakefront Honeymoon Cottage</h4>
+              <p class="facility-card-description">A private retreat with a viewing gallery overlooking Ashtamudi Lake.</p>
+              <ul class="stay-card-amenities" aria-label="Cottage features">
+                <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M3 8q2-3 4 0t4 0 4 0 4 0 2 0M3 13q2-3 4 0t4 0 4 0 4 0 2 0M3 18q2-3 4 0t4 0 4 0 4 0 2 0"/></svg><span>Lake views</span></li>
+                <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M3 21h18M4 12h16M5 12v9m4-9v9m6-9v9m4-9v9M7 12V3h10v9"/></svg><span>Viewing gallery</span></li>
+                <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="m2 11 10-8 10 8M5 9v12h14V9M10 21v-7h4v7"/></svg><span>Private retreat</span></li>
+              </ul>
+            </div>
+          </article>
+        </div>
+      </div>
+      <ul class="facility-amenities" aria-label="Shared stay amenities">
+        <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M2 8a16 16 0 0 1 20 0M5 12a11 11 0 0 1 14 0M8.5 16a5.5 5.5 0 0 1 7 0"/><circle cx="12" cy="20" r=".6" fill="currentColor"/></svg><span>Free Wi-Fi</span></li>
+        <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="m4 10 2-6h12l2 6M3 10h18v9H3zM5 19v2m14-2v2M6 14h2m8 0h2"/></svg><span>Ample on-site parking</span></li>
+        <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M3 8q2-3 4 0t4 0 4 0 4 0 2 0M3 13q2-3 4 0t4 0 4 0 4 0 2 0M3 18q2-3 4 0t4 0 4 0 4 0 2 0"/></svg><span>Lakeside setting</span></li>
+      </ul>
+    </section>
+
+    <section class="facilities-section facilities-section-mint section" id="facilities-gather" aria-labelledby="facilities-gather-title">
+      <h3 class="display" id="facilities-gather-title">Gather &amp; Celebrate</h3>
+      <div class="facility-card-carousel">
+        <div class="facility-card-navigation" [hidden]="!gatherCardNavigation().overflows">
+          <p class="sr-only" id="gather-swipe-hint">Swipe sideways, use the previous and next buttons, or use arrow keys while the cards are focused.</p>
+          <div class="facility-card-buttons" role="group" aria-label="Gathering card navigation">
+            <button class="facility-card-arrow" type="button" aria-label="Previous gathering card" aria-controls="gather-card-track" [disabled]="!gatherCardNavigation().previous" (click)="scrollFacilityCards(gatherCards, -1)">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="m14 6-6 6 6 6"/></svg>
+            </button>
+            <button class="facility-card-arrow" type="button" aria-label="Next gathering card" aria-controls="gather-card-track" [disabled]="!gatherCardNavigation().next" (click)="scrollFacilityCards(gatherCards, 1)">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="m10 6 6 6-6 6"/></svg>
+            </button>
+          </div>
+        </div>
+        <div class="facility-cards facility-gather-cards" id="gather-card-track" #gatherCards tabindex="0" role="region" aria-labelledby="facilities-gather-title" aria-describedby="gather-swipe-hint">
+          <article class="facility-card" aria-labelledby="gather-meetings-title">
+            <figure class="facility-card-photo conference-photos" #conferenceImages>
+              <img class="conference-photo-evening" [class.is-current]="currentConferencePhoto() === 0" [attr.aria-hidden]="currentConferencePhoto() !== 0" src="assets/dhyanatheeram-building-evening.jpg" alt="Exterior of Dhyanatheeram at dusk, with illuminated balconies and palm trees" loading="lazy" width="1521" height="1034">
+              <img class="conference-photo-overlay" [class.is-current]="currentConferencePhoto() === 1" [attr.aria-hidden]="currentConferencePhoto() !== 1" src="assets/dhyanatheeram-building-enhanced.jpg" alt="Daytime exterior of Dhyanatheeram, with white columns, balconies and a landscaped entrance" loading="lazy" width="978" height="1608">
+            </figure>
+            <div class="facility-card-copy">
+              <p class="facility-card-label">Meetings &amp; events</p>
+              <h4 id="gather-meetings-title">Conference &amp; Meeting Facilities</h4>
+              <p class="facility-card-description">Perfect for retreats, seminars and events.</p>
+              <ul class="gather-card-facts" aria-label="Conference and meeting facilities">
+                <li class="facility-capacity"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><circle cx="9" cy="7" r="3"/><path d="M3 21v-3a6 6 0 0 1 12 0v3M16 4a3 3 0 0 1 0 6m2 4a5 5 0 0 1 3 4v3"/></svg><span>Up to <strong>250</strong> guests</span></li>
+                <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M12 2v20M3.3 7l17.4 10M3.3 17 20.7 7M9 4l3 3 3-3M9 20l3-3 3 3M4 10l4-1-1-4M17 19l-1-4 4-1M4 14l4 1-1 4M17 5l-1 4 4 1"/></svg><span>AC &amp; non-AC options</span></li>
+              </ul>
+            </div>
+          </article>
+          <article class="facility-card" aria-labelledby="gather-amphitheatre-title">
+            <figure class="facility-card-photo">
+              <img src="assets/garden-paths.webp" alt="Paved paths and lawns in the retreat gardens leading towards Ashtamudi Lake" loading="lazy" width="1600" height="1063">
+            </figure>
+            <div class="facility-card-copy">
+              <p class="facility-card-label">Open-air gatherings</p>
+              <h4 id="gather-amphitheatre-title">Amphitheater</h4>
+              <p class="facility-card-description">An inspiring open-air space for prayer, fellowship and cultural events.</p>
+              <ul class="gather-card-facts" aria-label="Amphitheatre facilities">
+                <li class="facility-capacity"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><circle cx="9" cy="7" r="3"/><path d="M3 21v-3a6 6 0 0 1 12 0v3M16 4a3 3 0 0 1 0 6m2 4a5 5 0 0 1 3 4v3"/></svg><span>Up to <strong>150</strong> guests</span></li>
+                <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><circle cx="12" cy="12" r="4"/><path d="M12 2v2m0 16v2M2 12h2m16 0h2M5 5l1.5 1.5m11 11L19 19M5 19l1.5-1.5m11-11L19 5"/></svg><span>Open-air setting</span></li>
+              </ul>
+            </div>
+          </article>
+          <article class="facility-card" id="facilities-dining" aria-labelledby="facilities-dining-title">
+            <figure class="facility-card-photo">
+              <img src="assets/restaurant-exterior-rendering.webp" alt="Architectural rendering of the Dhyanatheeram restaurant, with broad windows and a central entrance at sunset" loading="lazy" width="1677" height="938">
+            </figure>
+            <div class="facility-card-copy">
+              <p class="facility-card-label">Dining</p>
+              <h4 id="facilities-dining-title">The Lakeview Restaurant</h4>
+              <p class="facility-card-description">A delightful multi-cuisine dining experience.</p>
+              <a class="facility-card-booking" href="#contact">Booking enquiries <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M7 17 17 7M7 7h10v10"/></svg></a>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+  </section>
+
+
+
+  <section class="location section" id="location" aria-labelledby="location-title">
+    <h2 class="display" id="location-title">Location &amp; Directions</h2>
+    <div class="location-stage">
+    <iframe class="location-map"
+      title="Google Maps location of Mar Thoma Dhyanatheeram, Perungalam"
+      src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3940.854195136661!2d76.5956875!3d8.9855615!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3b0607aaa28b8a35%3A0x63ee96ec8f442c7a!2sMar%20Thoma%20Dhyanatheeram%2C%20Perungalam%2C%20Kollam!5e0!3m2!1sen!2sin!4v1794040693708!5m2!1sen!2sin"
+      width="600" height="450" loading="lazy" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen>
+    </iframe>
+      <div class="location-address-panel">
+        <p class="location-panel-label">Find us by the lake</p>
+        <address>
+          <strong>Mar Thoma Dhyanatheeram</strong><br>
+          Perungalam P.O., Arinalloor (via)<br>
+          Kollam, Kerala 690538
+        </address>
+        <a class="location-directions" href="https://www.google.com/maps/dir/?api=1&amp;destination=8.9855615%2C76.5956875" target="_blank" rel="noopener">Get directions <span aria-hidden="true">&#8599;</span></a>
+      </div>
+    </div>
+    <div class="location-options">
+      <details name="arrival-options">
+        <summary><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m22 2-7 20-4-9-9-4 20-7ZM11 13 22 2"/></svg>Airport <span class="location-toggle" aria-hidden="true"></span></summary>
+        <p>Thiruvananthapuram International Airport (TRV) is the nearest airport to the Munroe Island area. Use the retreat&#8217;s Google Maps pin to plan your onward journey.</p>
+      </details>
+      <details name="arrival-options">
+        <summary><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="5" y="3" width="14" height="15" rx="3"/><path d="M5 11h14M12 3v8M8 18l-3 4m11-4 3 4M8 21h8M8 15h1m6 0h1"/></svg>Local transportation <span class="location-toggle" aria-hidden="true"></span></summary>
+        <p>Kollam Junction and Munroturuttu are rail options for the area. If arriving by boat, <a class="text-link" href="tel:+918547799080">call the centre</a> to confirm the best jetty and current timings.</p>
+      </details>
+    </div>
+  </section>
+
+<dialog class="info-dialog" id="about-more" #aboutMore aria-labelledby="about-more-title">
+  <form method="dialog">
+    <button type="submit" autofocus>Close <span aria-hidden="true">×</span></button>
+  </form>
+  <h2 id="about-more-title">Still waters. Open hearts.</h2>
+  <p>{{ aboutIntroduction }} This hidden gem, located on the shimmering Ashtamudi Lake, offers an atmosphere of unmatched tranquility and lush greenery, framed by towering coconut palms that sway gently in the breeze, carrying the fresh scent of nature over the sparkling waters.</p>
+  <p>A perfect fusion of natural beauty and divine presence, Dhyanatheeram is an ideal sanctuary for conferences, spiritual retreats, rejuvenating holidays, and peaceful relaxation. The breathtaking vistas of the rising and setting sun, along with the vibrant hues of the landscape, showcase the magnificent artistry of the Creator.</p>
+  <p>Here, amidst the peaceful embrace of nature, you'll find a unique opportunity to reconnect with the divine and experience the pure serenity that only this sacred place can offer. Come, feel the spirit of nature, and glorify the Almighty God in the heart of God's creation.</p>
+</dialog>
+
+<dialog class="info-dialog share-dialog" id="about-share" #aboutShare aria-labelledby="about-share-title" aria-describedby="about-share-description">
+  <form method="dialog">
+    <button class="share-close" type="submit" aria-label="Close share panel"><span aria-hidden="true">×</span></button>
+  </form>
+  <h2 id="about-share-title">Share a little stillness</h2>
+  <p class="share-description" id="about-share-description">Invite someone to discover Dhyanatheeram.</p>
+  <button class="button share-copy" type="button" autofocus (click)="copyShareUrl(shareInput, shareLinkDetails)">Copy link</button>
+  <p class="share-status" role="status" aria-live="polite" aria-atomic="true">{{ shareStatus() }}</p>
+  <details class="share-link-details" #shareLinkDetails>
+    <summary>View link</summary>
+    <label class="sr-only" for="about-share-url">Link to About Dhyanatheeram</label>
+    <input id="about-share-url" type="url" [value]="shareUrl()" readonly #shareInput (focus)="shareInput.select()">
+  </details>
+</dialog>

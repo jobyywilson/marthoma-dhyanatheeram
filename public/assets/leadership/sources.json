@@ -1,0 +1,63 @@
+{
+  "checkedOn": "2026-11-08",
+  "people": [
+    {
+      "name": "His Grace The Most Rev. Dr. Theodosius Mar Thoma Metropolitan",
+      "displayRole": "Mar Thoma Metropolitan",
+      "treatment": "verified portrait",
+      "file": "theodosius-mar-thoma.webp",
+      "sourcePage": "https://marthoma.in/bishops/",
+      "sourceImage": "https://marthoma.in/wp-content/uploads/2026/01/DEV_0124-683x1024.jpg",
+      "credit": "Malankara Mar Thoma Syrian Church",
+      "identityEvidence": "Portrait explicitly labelled with the bishop’s name on the official Bishops directory.",
+      "processing": "Resized and converted to WebP; head-and-shoulders crop."
+    },
+    {
+      "name": "Rt. Rev. Dr. Isaac Mar Philoxenos Episcopa",
+      "displayRole": "Diocesan Episcopa",
+      "treatment": "verified portrait",
+      "file": "isaac-mar-philoxenos.webp",
+      "sourcePage": "https://marthoma.in/bishops/",
+      "sourceImage": "https://marthoma.in/wp-content/uploads/2025/12/586586f0c9cc4bec7335539d4d8e911e.webp",
+      "credit": "Malankara Mar Thoma Syrian Church",
+      "identityEvidence": "Portrait explicitly labelled with the bishop’s name on the official Bishops directory.",
+      "processing": "Resized without changing proportions and converted to WebP."
+    },
+    {
+      "name": "Rev. Joice George",
+      "displayRole": "Director, Dhyanatheeram",
+      "treatment": "verified portrait",
+      "file": "joice-george.webp",
+      "sourcePage": "https://marthoma.in/clergy/joice-george/",
+      "sourceImage": "https://marthoma.in/wp-content/uploads/2021/06/JOICE-ANCHAL.jpg",
+      "credit": "Malankara Mar Thoma Syrian Church",
+      "identityEvidence": "Official clergy profile names JOICE GEORGE and contains the portrait. The diocesan clergy directory lists Rev. Joice George at Mar Thoma Dhyanatheeram.",
+      "processing": "Resized without changing proportions and converted to WebP.",
+      "corroboratingPage": "https://mtdiocesetvmklm.com/clergy"
+    },
+    {
+      "name": "Rev. Shibu O. Plavila",
+      "displayRole": "Diocesan Secretary",
+      "treatment": "initials placeholder",
+      "note": "No portrait confidently tied to this person was located in the bounded official-source search."
+    },
+    {
+      "name": "Mr. Johnson Abraham",
+      "displayRole": "Diocesan Treasurer",
+      "treatment": "initials placeholder",
+      "note": "No portrait confidently tied to this person was located in the bounded official-source search."
+    },
+    {
+      "name": "Mr. Shinu Chacko",
+      "displayRole": "Secretary, Dhyanatheeram",
+      "treatment": "initials placeholder",
+      "note": "No portrait confidently tied to this person was located in the bounded official-source search."
+    },
+    {
+      "name": "CA Sam Varghese",
+      "displayRole": "Construction Committee Convenor",
+      "treatment": "initials placeholder",
+      "note": "No portrait confidently tied to this person was located in the bounded official-source search."
+    }
+  ]
+}
